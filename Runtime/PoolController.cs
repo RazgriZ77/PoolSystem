@@ -12,10 +12,13 @@ public class PoolController<T> : IPool<T> where T : MonoBehaviour, IPoolable<T> 
     #region Private Variables
     private Action<T> pullObject;
     private Action<T> pushObject;
+
     private Stack<T> pooledObjects = new();
     
     private GameObject prefab;
     private Transform container;
+
+    private T temp;
     #endregion
 
     // ==================== METODOS ====================
@@ -37,31 +40,29 @@ public class PoolController<T> : IPool<T> where T : MonoBehaviour, IPoolable<T> 
 
     #region Pull
     public T Pull() {
-        T _t;
+        if (pooledCount > 0) temp = pooledObjects.Pop();
+        else temp = GameObject.Instantiate(prefab, container).GetComponent<T>();
 
-        if (pooledCount > 0) _t = pooledObjects.Pop();
-        else _t = GameObject.Instantiate(prefab, container).GetComponent<T>();
+        temp.gameObject.SetActive(true);
+        temp.Initialize(Push);
 
-        _t.gameObject.SetActive(true);
-        _t.Initialize(Push);
+        pullObject?.Invoke(temp);
 
-        pullObject?.Invoke(_t);
-
-        return _t;
+        return temp;
     }
 
     public T Pull(Vector3 _position) {
-        T _t = Pull();
-        _t.transform.position = _position;
+        temp = Pull();
+        temp.transform.position = _position;
 
-        return _t;
+        return temp;
     }
 
     public T Pull(Vector3 _position, Quaternion _rotation) {
-        T _t = Pull();
-        _t.transform.SetPositionAndRotation(_position, _rotation);
+        temp = Pull();
+        temp.transform.SetPositionAndRotation(_position, _rotation);
 
-        return _t;
+        return temp;
     }
     #endregion
 
@@ -94,12 +95,10 @@ public class PoolController<T> : IPool<T> where T : MonoBehaviour, IPoolable<T> 
     }
 
     private void Spawn(int _number) {
-        T _t;
-
         for (int i = 0; i < _number; i++) {
-            _t = GameObject.Instantiate(prefab, container).GetComponent<T>();
-            pooledObjects.Push(_t);
-            _t.gameObject.SetActive(false);
+            temp = GameObject.Instantiate(prefab, container).GetComponent<T>();
+            pooledObjects.Push(temp);
+            temp.gameObject.SetActive(false);
         }
     }
 }
