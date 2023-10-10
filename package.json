@@ -1,0 +1,45 @@
+{
+    "name": "com.razgriz77.customtool.poolsystem",
+    "version": "1.0.0",
+    "displayName": "Custom Tool - Pool System",
+    "description": "",
+    "unity": "2022.3",
+    
+    "keywords":
+    [
+        "architecture",
+        "modular",
+        "middleware",
+        "unity"
+    ],
+
+    "author": 
+    {
+        "name": "RazgriZ77",
+        "email": "enriquebotella97@gmail.com"
+    },
+
+    "samples": 
+    [
+        {
+          "displayName": "Sample",
+          "description": "",
+          "path": "Sample"
+        }
+    ],
+
+    "hideInEditor": true,
+
+    "repository": 
+    {
+        "type": "git",
+        "url": "https://github.com/RazgriZ77/CustomTool.PoolSystem.git"
+    },
+
+    "license": "ISC",
+
+    "bugs": 
+    {
+        "url": "https://www.google.com/"
+    }
+}

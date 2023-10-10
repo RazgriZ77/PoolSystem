@@ -1,0 +1,16 @@
+{
+    "name": "CustomTool.PoolSystem.Sample",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7edb880c00d60d64d82ee2c46c2eb7b0"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
