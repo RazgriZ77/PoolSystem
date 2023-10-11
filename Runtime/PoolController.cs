@@ -39,12 +39,14 @@ public class PoolController<T> : IPool<T> where T : MonoBehaviour, IPoolable<T> 
     }
 
     #region Pull
-    public T Pull() {
+    public T Pull(Vector3 _position = default) {
         if (pooledCount > 0) temp = pooledObjects.Pop();
         else temp = GameObject.Instantiate(prefab, container).GetComponent<T>();
 
         temp.gameObject.SetActive(true);
         temp.Initialize(Push);
+        
+        temp.transform.position = _position;
 
         pullObject?.Invoke(temp);
 
@@ -52,15 +54,14 @@ public class PoolController<T> : IPool<T> where T : MonoBehaviour, IPoolable<T> 
     }
 
     public T Pull(Vector3 _position) {
-        temp = Pull();
-        temp.transform.position = _position;
+        temp = Pull(_position);
 
         return temp;
     }
 
     public T Pull(Vector3 _position, Quaternion _rotation) {
-        temp = Pull();
-        temp.transform.SetPositionAndRotation(_position, _rotation);
+        temp = Pull(_position);
+        temp.transform._rotation = _rotation;
 
         return temp;
     }
