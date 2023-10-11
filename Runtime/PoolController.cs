@@ -55,7 +55,7 @@ public class PoolController<T> : IPool<T> where T : MonoBehaviour, IPoolable<T> 
 
     public T Pull(Vector3 _position, Quaternion _rotation) {
         temp = Pull(_position);
-        temp.transform._rotation = _rotation;
+        temp.transform.rotation = _rotation;
 
         return temp;
     }
