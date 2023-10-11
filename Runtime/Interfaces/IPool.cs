@@ -1,4 +1,4 @@
 public interface IPool<T> {
-    T Pull();
+    T Pull(Vector3 _position = default);
     void Push(T _t);
 }
