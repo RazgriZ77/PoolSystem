@@ -45,16 +45,10 @@ public class PoolController<T> : IPool<T> where T : MonoBehaviour, IPoolable<T> 
 
         temp.gameObject.SetActive(true);
         temp.Initialize(Push);
-        
+
         temp.transform.position = _position;
 
         pullObject?.Invoke(temp);
-
-        return temp;
-    }
-
-    public T Pull(Vector3 _position) {
-        temp = Pull(_position);
 
         return temp;
     }
