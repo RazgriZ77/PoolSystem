@@ -45,5 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectPrefab: {fileID: 9179424393586401162, guid: 05bc641d27711a94eb6a33f3d2f48e57, type: 3}
-  startAmount: 3
+  startAmount: 10
   spawnKey: 32
+  returnAllKey: 102

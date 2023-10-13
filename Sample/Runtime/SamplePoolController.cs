@@ -13,6 +13,7 @@ public class SamplePoolController : MonoBehaviour {
     [SerializeField] private int startAmount = 0;
     [Space]
     [SerializeField] private KeyCode spawnKey = KeyCode.Space;
+    [SerializeField] private KeyCode returnAllKey = KeyCode.F;
 
     private SampleObject currentSampleObject;
     #endregion
@@ -25,6 +26,7 @@ public class SamplePoolController : MonoBehaviour {
 
     private void Update() {
         if (Input.GetKeyDown(spawnKey)) PullFromPool();
+        if (Input.GetKeyDown(returnAllKey)) ReturnAll();
     }
     
     // ==================== METODOS ====================
@@ -33,6 +35,10 @@ public class SamplePoolController : MonoBehaviour {
         
         currentSampleObject.transform.position = transform.position;
         currentSampleObject.RB.velocity = Vector3.zero;
+    }
+
+    private void ReturnAll() {
+        PoolController.PushAll();
     }
     
     #region Pool

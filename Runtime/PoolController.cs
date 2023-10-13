@@ -12,7 +12,7 @@ public class PoolController<T> : IPool<T> where T : MonoBehaviour, IPoolable<T> 
     #region Private Variables
     private Action<T> pullObject;
     private Action<T> pushObject;
-
+    
     private Stack<T> pooledObjects = new();
     
     private GameObject prefab;
@@ -81,6 +81,7 @@ public class PoolController<T> : IPool<T> where T : MonoBehaviour, IPoolable<T> 
     }
     #endregion
 
+    #region Push
     public void Push(T _t) {
         pooledObjects.Push(_t);
 
@@ -88,6 +89,15 @@ public class PoolController<T> : IPool<T> where T : MonoBehaviour, IPoolable<T> 
 
         _t.gameObject.SetActive(false);
     }
+
+    public void PushAll() {
+        for (int i = 0; i < container.childCount; i++) {
+            if (container.GetChild(i).gameObject.activeSelf) {
+                container.GetChild(i).gameObject.SetActive(false);
+            }
+        }
+    }
+    #endregion
 
     private void Spawn(int _number) {
         for (int i = 0; i < _number; i++) {
