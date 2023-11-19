@@ -1,4 +1,4 @@
 public interface IPoolable<T> {
-    void Initialize(System.Action<T> _returnAction);
-    void ReturnToPool();
+    void OnPulled(System.Action<T> _returnAction);
+    void OnPushed();
 }
