@@ -44,7 +44,7 @@ public class PoolController<T> : IPool<T> where T : MonoBehaviour, IPoolable<T> 
         else temp = GameObject.Instantiate(prefab, container).GetComponent<T>();
 
         temp.gameObject.SetActive(true);
-        temp.Initialize(Push);
+        temp.OnPulled(Push);
 
         temp.transform.position = _position;
 

@@ -12,16 +12,16 @@ public class PoolEntity : MonoBehaviour, IPoolable<PoolEntity> {
 
     // ==================== INICIO ====================
     private void OnDisable() {
-        ReturnToPool();
+        OnPushed();
     }
     
     // ==================== METODOS ====================
     #region IPoolable
-    public void Initialize(Action<PoolEntity> _returnAction) {
+    public virtual void OnPulled(Action<PoolEntity> _returnAction) {
         this.returnToPool = _returnAction;
     }
 
-    public void ReturnToPool() {
+    public virtual void OnPushed() {
         returnToPool?.Invoke(this);
     }
     #endregion
